@@ -72,10 +72,7 @@ while **Em'Shock** Plays Songs for you.
   # PEREGRINE INC.
 ![Logo](https://1.bp.blogspot.com/-dC6TUCpkl-4/YURr9GL3DLI/AAAAAAAAvpU/dhlskWO48KEiwA2cNRCULLx7P51svqnTQCLcBGAsYHQ/s1935/Logo.jpg)
 ### Things Don't Change with the speed. We change Thing's With Our speed. 
-~Peregrine inc.
-## License
-
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+~AbHiK inc.
 
 
   

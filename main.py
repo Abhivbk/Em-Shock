@@ -1,3 +1,18 @@
+# GNU GENERAL PUBLIC LICENSE
+
+# Version 3, 29 June 2007
+
+# Copyright (C) 2021 AbHiK Inc.
+
+# Everyone is permitted to copy and distribute verbatim copies of this
+# license document, but changing it is not allowed.
+
+# If anyone wants to use it for profitable or personal use than please contack us at our email.
+
+# Author --> Abhinav Kulkarni
+# Email --> abhivbk13@gmail.com
+
+
 import discord
 from discord.ext import commands
 import youtube_dl
