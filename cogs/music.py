@@ -53,7 +53,7 @@ class music(commands.Cog):
         self.song_title, self.song_url = search_engine.getYt_song(self.song)
         ctx.voice_client.stop()
 
-        FFMPEG_OPTIONS = {'nefor_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
+        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
                           'options': '-vn'}
         YDL_OPTIONS = {'format': "bestaudio"}
 
