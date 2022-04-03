@@ -11,6 +11,7 @@ class music(commands.Cog):
         self.voice_channel = None
         self.song_url = None
         self.song_title = None
+        self.song = None
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -41,12 +42,15 @@ class music(commands.Cog):
         await ctx.send("Disconnected from the Voice Channel")
 
     @commands.command()
-    async def play(self, ctx, song):
+    async def play(self, ctx):
+        self.song = ctx.message.content.replace("!play", "").strip()
+        # self.song = self.song.replace("!play", "")
+        print(self.song)
         if ctx.voice_client is None:
             await ctx.send("I am not in any Voice channel. Call me By '\Join' command")
 
         search_engine = Search()
-        self.song_title, self.song_url = search_engine.getYt_song(song)
+        self.song_title, self.song_url = search_engine.getYt_song(self.song)
         ctx.voice_client.stop()
 
         FFMPEG_OPTIONS = {'nefor_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
