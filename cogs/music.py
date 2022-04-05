@@ -30,24 +30,26 @@ class music(commands.Cog):
             await ctx.send("You're not in a voice channel")
         if ctx.voice_client is None:
             self.voice_channel = ctx.author.voice.channel
-            await ctx.send("Joined You Voice channel")
+            await ctx.send("Joined Your Voice channel")
             await self.voice_channel.connect()
         else:
-            await ctx.send("Joined You Voice channel")
+            await ctx.send("Joined Your Voice channel")
             await ctx.voice_client.move_to(self.voice_channel)
 
-    @commands.command()
+    @commands.command(aliases=['stop', 'disconnect'])
     async def leave(self, ctx):
+        ctx.voice_client.stop()
         await ctx.voice_client.disconnect()
+        await self.client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening,
+                                                                    name='your Commands'))
         await ctx.send("Disconnected from the Voice Channel")
 
     @commands.command()
     async def play(self, ctx):
         self.song = ctx.message.content.replace("!play", "").strip()
-        # self.song = self.song.replace("!play", "")
-        print(self.song)
+
         if ctx.voice_client is None:
-            await ctx.send("I am not in any Voice channel. Call me By '\Join' command")
+            await self.join(ctx)
 
         search_engine = Search()
         self.song_title, self.song_url = search_engine.getYt_song(self.song)
@@ -62,7 +64,7 @@ class music(commands.Cog):
         with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
             info = ydl.extract_info(self.song_url, download=False)
             url2 = info['formats'][0]['url']
-            source = await discord.FFmpegOpusAudio.from_probe(url2, executable='bin/ffmpeg.exe')
+            source = await discord.FFmpegOpusAudio.from_probe(url2, executable='bin/ffmpeg.exe', **FFMPEG_OPTIONS)
             await ctx.send(f"Now Playing {self.song_title} --> {self.song_url}")
             voice_channel.play(source)
 
